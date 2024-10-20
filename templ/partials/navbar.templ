@@ -1,0 +1,36 @@
+package partials
+
+import "Kingcrusher9764/go-server/templ/icons"
+
+templ Navbar(){
+    <nav class="w-full h-full flex md:flex-col gap-x-2 md:gap-x-0 md:gap-y-2 md:py-2 border-t md:border-t-0 md:border-r border-border">
+        <div class="hidden md:flex items-center gap-x-2 justify-center">
+            <h2 class="text-base">Your Pharma</h2>
+            @Button("button", "p-0 rounded hover:bg-background-muted"){
+                <div class="hidden ">
+                    @icons.Sun()
+                </div>
+                <div class="">
+                    @icons.Moon()
+                </div>
+            }
+        </div>
+
+        <div
+            class="w-full h-full md:h-[max-content] flex md:flex-col justify-around md:justify-start md:gap-y-2 md:px-4"
+        >
+            @NavbarOption("/home", "Dashboard")
+            @NavbarOption("/customers", "Customers")
+            @NavbarOption("/orders", "Orders")
+        </div>
+    </nav>
+}
+
+templ NavbarOption(linkTo, label string){
+    <a
+        href={templ.URL(linkTo)}
+        class="text-foreground w-full h-full flex items-center justify-center md:justify-start md:p-2 rounded hover:bg-background-muted"
+    >
+        <div class="">{label}</div>
+    </a>
+}
