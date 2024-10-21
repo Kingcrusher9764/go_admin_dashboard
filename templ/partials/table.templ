@@ -1,0 +1,53 @@
+package partials
+
+import (
+    "Kingcrusher9764/go-server/templ/icons"
+    "Kingcrusher9764/go-server/dataset"
+    "strconv"
+)
+
+templ Table(tableStyle string){
+    <table
+        if len(tableStyle) == 0{
+            class="w-full table-auto shadow-md rounded"
+        }else{
+            class={tableStyle}
+        }
+    >
+        {children...}
+    </table>
+}
+
+templ CustomerTableHeader(){
+    <tr class="w-full text-foreground-muted border-b border-border-muted">
+        <td class="text-center px-4 py-2">OrderId</td>
+        <td class="text-center px-4 py-2">Name</td>
+        <td class="text-center px-4 py-2">Email</td>
+        <td class="text-center px-4 py-2">Product</td>
+        <td class="text-center px-4 py-2">Price</td>
+        <td class="text-center px-4 py-2">Status</td>
+        <td class="text-center px-4 py-2">Actions</td>
+    </tr>
+}
+
+templ CustomerTableRows(customers []dataset.Customer){
+    for _, customer := range(customers){
+        <tr class="w-full text-foreground border-b border-border-muted hover:bg-background-muted">
+            <td class="text-center px-4 py-2 whitespace-nowrap">{strconv.Itoa(customer.OrderId)}</td>
+            <td class="text-center px-4 py-2 whitespace-nowrap">{customer.Name}</td>
+            <td class="text-center px-4 py-2 whitespace-nowrap">{customer.Email}</td>
+            <td class="text-center px-4 py-2 whitespace-nowrap">{customer.Product}</td>
+            <td class="text-center px-4 py-2 whitespace-nowrap">{strconv.Itoa(customer.Price)}</td>
+            <td class="text-center px-4 py-2 whitespace-nowrap">
+                <div class="p-2 rounded-xl bg-green-600 text-white">
+                    {customer.Status.String()}
+                </div>
+            </td>
+            <td class="text-center px-4 py-2">
+                @Button("button", "w-full flex text-foreground-muted hover:text-foreground items-center justify-center"){
+                    @icons.Options()
+                }
+            </td>
+        </tr>
+    }
+}

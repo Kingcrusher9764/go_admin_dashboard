@@ -1,1 +1,1 @@
-<section class=\"w-full h-full\">Home Page</section>
+<section class=\"w-full h-full p-2\">Home Page</section>
