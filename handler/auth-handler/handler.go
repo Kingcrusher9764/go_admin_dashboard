@@ -33,7 +33,7 @@ func RegisterHandler(c echo.Context) error {
 	}
 
 	return RenderView(c, authView.RegisterIndex(
-		"Login",
+		"Register",
 		false,
 		msgs,
 		msgs,
